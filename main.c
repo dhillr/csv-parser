@@ -4,16 +4,20 @@
 #include <stdbool.h>
 
 typedef struct {
-    char* header;
-    size_t numEntries;
-    char** entries;
+    char* header; // the column header
+    size_t numEntries; // the number of entries in the column
+    char** entries; // the entries in the column
 } kv;
 
 typedef struct {
-    kv* data;
-    size_t numEntries;
+    kv* data; // columns of CSV each with the `header` and the `entries`
+    size_t numEntries; // the number of entries in each column
 } CSV;
 
+/*
+  * parses a csv string.
+  * @returns a `CSV` struct containing the data
+*/
 CSV parse_csv(char* data, long size) {
     CSV csv = {.data=malloc(sizeof(kv))};
 
@@ -39,7 +43,7 @@ CSV parse_csv(char* data, long size) {
                 csv.data = realloc(csv.data, (entry_i+1)*sizeof(kv));
 
                 // the content at the address of `item` will get lost when we free it.
-                // to preserve it, we make a copy :D
+                // to preserve it, we make a copy
                 char* itemcpy = malloc(256);
                 memcpy(itemcpy, item, 256);
 
