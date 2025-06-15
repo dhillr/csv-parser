@@ -18,7 +18,7 @@ typedef struct {
   * parses a csv string.
   * @returns a `CSV` struct containing the data
 */
-CSV parse_csv(char* data, long size) {
+extern CSV parse_csv(char* data, long size) {
     CSV csv = {.data=malloc(sizeof(kv))};
 
     size_t header_len = 0;
