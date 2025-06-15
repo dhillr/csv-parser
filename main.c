@@ -39,7 +39,7 @@ CSV parse_csv(char* data, long size) {
                 csv.data = realloc(csv.data, (entry_i+1)*sizeof(kv));
 
                 // the content at the address of `item` will get lost when we free it.
-                // to preserve it, we make a copy
+                // to preserve it, we make a copy :D
                 char* itemcpy = malloc(256);
                 memcpy(itemcpy, item, 256);
 
